@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Moya
 
 class ViewController: UIViewController {
     
@@ -16,6 +17,9 @@ class ViewController: UIViewController {
     
     // MARK: - Fields
     var dataArray = [Product]()
+    
+    // MARK: - Dependency
+    var viewModel: ViewModel = ViewModel(apiService: APIService(apiProvider: MoyaProvider<ProductAPI>()))
     
 
     override func viewDidLoad() {

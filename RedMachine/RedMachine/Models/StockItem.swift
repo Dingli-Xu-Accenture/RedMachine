@@ -35,6 +35,37 @@ struct StockItem: Codable {
     var useConfigNotifyStockQty: Bool = false
     var useConfigQtyIncrements: Bool = false
     
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        backorders = try container.decode(Int.self, forKey: .backorders)
+        enableQtyIncrements = try container.decode(Bool.self, forKey: .enableQtyIncrements)
+        isDecimalDivided = try container.decode(Bool.self, forKey: .isDecimalDivided)
+        isInStock = try container.decode(Bool.self, forKey: .isInStock)
+        isQtyDecimal = try container.decode(Bool.self, forKey: .isQtyDecimal)
+        itemId = try container.decode(Int.self, forKey: .itemId)
+        lowStockDate = try? container.decodeIfPresent(String.self, forKey: .lowStockDate)
+        manageStock = try container.decode(Bool.self, forKey: .manageStock)
+        maxSaleQty = try container.decode(Int.self, forKey: .maxSaleQty)
+        minQty = try container.decode(Int.self, forKey: .minQty)
+        minSaleQty = try container.decode(Int.self, forKey: .minSaleQty)
+        notifyStockQty = try container.decode(Int.self, forKey: .notifyStockQty)
+        productId = try container.decode(Int.self, forKey: .productId)
+        qty = try container.decode(Int.self, forKey: .qty)
+        qtyIncrements = try container.decode(Int.self, forKey: .qtyIncrements)
+        showDefaultNotificationMessage = try container.decode(Bool.self, forKey: .showDefaultNotificationMessage)
+        stockId = try container.decode(Int.self, forKey: .stockId)
+        stockStatusChangedAuto = try container.decode(Int.self, forKey: .stockStatusChangedAuto)
+        useConfigBackorders = try container.decode(Bool.self, forKey: .useConfigBackorders)
+        useConfigEnableQtyInc = try container.decode(Bool.self, forKey: .useConfigEnableQtyInc)
+        useConfigManageStock = try container.decode(Bool.self, forKey: .useConfigManageStock)
+        useConfigMaxSaleQty = try container.decode(Bool.self, forKey: .useConfigMaxSaleQty)
+        useConfigMinQty = try container.decode(Bool.self, forKey: .useConfigMinQty)
+        useConfigMinSaleQty = try container.decode(Int.self, forKey: .useConfigMinSaleQty)
+        useConfigNotifyStockQty = try container.decode(Bool.self, forKey: .useConfigNotifyStockQty)
+        useConfigQtyIncrements = try container.decode(Bool.self, forKey: .useConfigQtyIncrements)
+
+    }
+    
     private enum CodingKeys: String, CodingKey {
         case backorders
         case enableQtyIncrements = "enable_qty_increments"

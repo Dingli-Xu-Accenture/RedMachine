@@ -3,7 +3,8 @@ platform :ios, '11.0'
 
 use_frameworks!
 target 'RedMachine' do
-pod 'RxSwift', '= 6.1.0'
-pod 'RxCocoa', '= 6.1.0'
+pod 'RxSwift', '= 5.1.1'
+pod 'RxCocoa', '= 5.1.1'
+pod 'Moya/RxSwift'
 end
 	
