@@ -23,6 +23,7 @@
 		5F59BBE426A91F3400785B8C /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F59BBE326A91F3300785B8C /* APIService.swift */; };
 		5F59BBE926A91F6C00785B8C /* ProductAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F59BBE826A91F6C00785B8C /* ProductAPI.swift */; };
 		5F59BBF826A9566900785B8C /* Single+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F59BBF726A9566900785B8C /* Single+Network.swift */; };
+		5F59BC2726A9895F00785B8C /* ItemSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F59BC2626A9895F00785B8C /* ItemSection.swift */; };
 		CE4B6C06DA71F4CE19B05147 /* Pods_RedMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5BB160144A488C9A6BEA58A /* Pods_RedMachine.framework */; };
 		F5341B8926A5F82500ED3BDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5341B8826A5F82500ED3BDA /* AppDelegate.swift */; };
 		F5341B8B26A5F82500ED3BDA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5341B8A26A5F82500ED3BDA /* SceneDelegate.swift */; };
@@ -68,6 +69,7 @@
 		5F59BBE326A91F3300785B8C /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		5F59BBE826A91F6C00785B8C /* ProductAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAPI.swift; sourceTree = "<group>"; };
 		5F59BBF726A9566900785B8C /* Single+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Single+Network.swift"; sourceTree = "<group>"; };
+		5F59BC2626A9895F00785B8C /* ItemSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSection.swift; sourceTree = "<group>"; };
 		D17A9205BCC1407E06C9EC18 /* Pods-RedMachine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedMachine.release.xcconfig"; path = "Target Support Files/Pods-RedMachine/Pods-RedMachine.release.xcconfig"; sourceTree = "<group>"; };
 		D5BB160144A488C9A6BEA58A /* Pods_RedMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RedMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5341B8526A5F82500ED3BDA /* RedMachine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedMachine.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				5F59BBAE26A9154A00785B8C /* ViewModel.swift */,
+				5F59BC2626A9895F00785B8C /* ItemSection.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 				5F59BB7E26A7FEED00785B8C /* TierPrice.swift in Sources */,
 				5F59BBF826A9566900785B8C /* Single+Network.swift in Sources */,
 				5F59BBE926A91F6C00785B8C /* ProductAPI.swift in Sources */,
+				5F59BC2726A9895F00785B8C /* ItemSection.swift in Sources */,
 				5F59BBB526A91BB600785B8C /* AppConstants.swift in Sources */,
 				5F59BB8326A7FF1A00785B8C /* MediaGalleryEntry.swift in Sources */,
 				5F59BB7926A7FEA200785B8C /* ProductLink.swift in Sources */,

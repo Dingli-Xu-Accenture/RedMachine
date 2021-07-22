@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxDataSources
 import Moya
 
 class ViewController: UIViewController {
@@ -17,6 +18,7 @@ class ViewController: UIViewController {
     
     // MARK: - Fields
     var dataArray = [Product]()
+    private let bag = DisposeBag()
     
     // MARK: - Dependency
     var viewModel: ViewModel = ViewModel(apiService: APIService(apiProvider: MoyaProvider<ProductAPI>()))
@@ -24,17 +26,49 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        setupTableView()
+        registerReusableViews()
+        bindViewModel()
+    }
+    
+    private func registerReusableViews() {
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+    }
+    
+    private func setupTableView() {
+        tableView = UITableView(frame: self.view.frame)
+        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        tableView.backgroundColor = .white
+        tableView.rx.setDelegate(self).disposed(by: bag)
+    }
+    
+    private func bindViewModel() {
+        viewModel.sections.asObservable()
+            .bind(to: tableView.rx.items(dataSource: rxDataSource()))
+            .disposed(by: bag)
+    }
+    
+    private func rxDataSource() -> RxTableViewSectionedReloadDataSource<ItemSection> {
+        let dataSource = RxTableViewSectionedReloadDataSource<ItemSection> { _, tableView, indexPath, item -> UITableViewCell in
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+            switch item {
+            case .item(let item):
+                cell.textLabel?.text = item.name
+                cell.detailTextLabel?.text = String(item.price)
+            }
+            return cell
+        }
+
+           
+        return dataSource
     }
 }
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataArray.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
     }
 }
 
