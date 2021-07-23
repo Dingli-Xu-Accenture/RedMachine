@@ -9,12 +9,15 @@ import Foundation
 
 // MARK: - Network Service Constant
 
-let BaseURL = URL(string: "https://stg.milwaukeetool.co.jp/rest/default/V1")!
+struct NetworkConstant {
+    static let BaseURL = URL(string: "https://stg.milwaukeetool.co.jp/rest/default/V1")!
 
-// Terry TODO: Token may be expired, need to refresh token if
-// unauthorized with current token.
-let token = "Bearer uk7jp017zu8eg56nluvq8jnwexfwa1k6"
-
+    // Terry TODO: Token may be expired, need to refresh token if
+    // unauthorized with current token.
+    static let Token = "z80pmn6dv6ddkmhnxh9r1ahioffeffxl"
+}
 
 // MARK: - UI Constant
-let cellIdentifier = "UITableViewCell"
+struct UIConstant {
+    static let CellIdentifier = "UITableViewCell"
+}

@@ -25,3 +25,9 @@ struct Item: Codable {
         price = try container.decode(Int.self, forKey: .price)
     }
 }
+
+extension Item: Comparable {
+    static func < (lhs: Item, rhs: Item) -> Bool {
+        return lhs.price < rhs.price
+    }
+}

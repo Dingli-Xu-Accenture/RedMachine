@@ -15,7 +15,7 @@ enum ProductAPI {
 
 extension ProductAPI: TargetType {
     var baseURL: URL {
-        return BaseURL
+        return NetworkConstant.BaseURL
     }
     
     var path: String {
@@ -51,9 +51,12 @@ extension ProductAPI: TargetType {
     }
     
     var headers: [String: String]? {
-        return ["Content-Type": "application/json; charset=utf-8",
-                "Authorization": token]
+        return ["Content-Type": "application/json; charset=utf-8"]
     }
-    
+}
 
+extension ProductAPI: AccessTokenAuthorizable {
+    var authorizationType: AuthorizationType? {
+        .bearer
+    }
 }

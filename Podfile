@@ -7,5 +7,6 @@ pod 'RxSwift', '= 5.1.1'
 pod 'RxCocoa', '= 5.1.1'
 pod 'RxDataSources'
 pod 'Moya/RxSwift'
+pod 'RealmSwift'
 end
 

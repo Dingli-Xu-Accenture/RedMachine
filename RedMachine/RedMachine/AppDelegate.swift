@@ -14,6 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Setting isExclusiveTouch as true, when two buttons are clicked simultaneously will only respond first click.
+        UIButton.appearance().isExclusiveTouch = true
         return true
     }
 

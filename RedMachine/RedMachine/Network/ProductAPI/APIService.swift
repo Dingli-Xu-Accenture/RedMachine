@@ -11,9 +11,11 @@ import Moya
 
 final class APIService {
     private let apiProvider: MoyaProvider<ProductAPI>
+    private let authPlugin: AccessTokenPlugin
     
-    init(apiProvider: MoyaProvider<ProductAPI>) {
-        self.apiProvider = apiProvider
+    init() {
+        self.authPlugin = AccessTokenPlugin { _ in NetworkConstant.Token }
+        self.apiProvider = MoyaProvider<ProductAPI>.init(plugins: [authPlugin])
     }
 }
 

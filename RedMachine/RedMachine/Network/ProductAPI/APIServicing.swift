@@ -2,7 +2,6 @@ import Foundation
 import RxSwift
 
 protocol APIServicing {
-    
     /// fetch product list with  pageSize (Current API doesn't support `page`)
     ///
     /// - Parameters:

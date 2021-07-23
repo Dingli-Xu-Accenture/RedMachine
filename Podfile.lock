@@ -6,6 +6,11 @@ PODS:
   - Moya/RxSwift (14.0.0):
     - Moya/Core
     - RxSwift (~> 5.0)
+  - Realm (10.8.1):
+    - Realm/Headers (= 10.8.1)
+  - Realm/Headers (10.8.1)
+  - RealmSwift (10.8.1):
+    - Realm (= 10.8.1)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
@@ -19,6 +24,7 @@ PODS:
 
 DEPENDENCIES:
   - Moya/RxSwift
+  - RealmSwift
   - RxCocoa (= 5.1.1)
   - RxDataSources
   - RxSwift (= 5.1.1)
@@ -28,6 +34,8 @@ SPEC REPOS:
     - Alamofire
     - Differentiator
     - Moya
+    - Realm
+    - RealmSwift
     - RxCocoa
     - RxDataSources
     - RxRelay
@@ -37,11 +45,13 @@ SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
+  Realm: a2db54d9dcceddeba936b429f5b3d6610a109686
+  RealmSwift: 2a3c75ecbf5a3b04080ff5f6f0554cf6337b4764
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
 
-PODFILE CHECKSUM: c08ff74ca95ee65f1b281cdc91b4f2fa4e24f4fe
+PODFILE CHECKSUM: 57ca0e25ea633ff0f19451c849d32e3a7fd72640
 
 COCOAPODS: 1.10.1
