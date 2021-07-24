@@ -36,6 +36,7 @@
 		F5341B9526A5F82800ED3BDA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5341B9326A5F82800ED3BDA /* LaunchScreen.storyboard */; };
 		F5341BA026A5F82800ED3BDA /* RedMachineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5341B9F26A5F82800ED3BDA /* RedMachineTests.swift */; };
 		F5341BAB26A5F82800ED3BDA /* RedMachineUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5341BAA26A5F82800ED3BDA /* RedMachineUITests.swift */; };
+		F5E49E7F26AC6DBC005A73FB /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E49E7E26AC6DBC005A73FB /* ProductTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		F5341BA626A5F82800ED3BDA /* RedMachineUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RedMachineUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5341BAA26A5F82800ED3BDA /* RedMachineUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedMachineUITests.swift; sourceTree = "<group>"; };
 		F5341BAC26A5F82900ED3BDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F5E49E7E26AC6DBC005A73FB /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 			children = (
 				F5341B8C26A5F82500ED3BDA /* ViewController.swift */,
 				5F59BCD426AAAB7800785B8C /* DetailViewController.swift */,
+				F5E49E7E26AC6DBC005A73FB /* ProductTableViewCell.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 				5F59BCDA26AAAB9900785B8C /* DetailViewModel.swift in Sources */,
 				5F59BBAF26A9154A00785B8C /* ViewModel.swift in Sources */,
 				5F59BB5D26A7F92900785B8C /* CustomAttribute.swift in Sources */,
+				F5E49E7F26AC6DBC005A73FB /* ProductTableViewCell.swift in Sources */,
 				5F59BCDF26AAC03B00785B8C /* UIViewController+Alert.swift in Sources */,
 				5F59BBDF26A91E8F00785B8C /* ProductList.swift in Sources */,
 				F5341B8B26A5F82500ED3BDA /* SceneDelegate.swift in Sources */,

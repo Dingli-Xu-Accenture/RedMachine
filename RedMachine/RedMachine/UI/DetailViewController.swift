@@ -72,7 +72,7 @@ final class DetailViewController: UIViewController {
             .drive { [weak self] _ in
                 guard let this = self else { return }
                 this.bookmarkButton.isSelected = !this.bookmarkButton.isSelected
-                this.viewModel.bookmarkObserver.onNext(this.bookmarkButton.isSelected)
+                this.viewModel.bookmarkObserver.onNext((this.bookmarkButton.isSelected, this.viewModel.indexPath))
             }.disposed(by: bag)
     }
 }

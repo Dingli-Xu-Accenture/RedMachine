@@ -16,7 +16,11 @@ class ViewModel {
     private var apiService: APIServicing
     private let bag = DisposeBag()
     
-    private var items = [Item]()
+    private var items = [Item]() {
+        didSet {
+            setupSections(items: items)
+        }
+    }
     var dataSource: [ItemSection] = [] {
         didSet {
             sections.onNext(dataSource)
@@ -43,7 +47,6 @@ class ViewModel {
             .subscribe { [weak self] _ in
                 guard let this = self else { return }
                 this.items.sort(by: <)
-                this.setupSections(items: this.items)
             }
             .disposed(by: bag)
     }
@@ -58,7 +61,6 @@ class ViewModel {
                 onSuccess: { [weak self] response in
                     guard let this = self else { return }
                     this.items = response?.items ?? []
-                    this.setupSections(items: this.items)
                     print("Get products succeeds.")},
                 onError: { error in
                     print("Get products catches error \(error.localizedDescription).")})
@@ -70,5 +72,9 @@ class ViewModel {
             items.map { .item(item: $0) }
         let itemsSection = ItemSection(items: itemTypes, type: .row)
         dataSource = [itemsSection]
+    }
+    
+    func updateItems(index: Int, toMark: Bool) {
+        items[index].setBookMark(toMark: toMark)
     }
 }

@@ -14,10 +14,5 @@ struct NetworkConstant {
 
     // Terry TODO: Token may be expired, need to refresh token if
     // unauthorized with current token.
-    static let Token = "z80pmn6dv6ddkmhnxh9r1ahioffeffxl"
-}
-
-// MARK: - UI Constant
-struct UIConstant {
-    static let CellIdentifier = "UITableViewCell"
+    static let Token = "y3fq5d5mnqgi55bpvnlxfces8aduxi5w"
 }

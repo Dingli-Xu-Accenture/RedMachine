@@ -86,7 +86,11 @@ final class ViewController: UIViewController {
     }
     
     private func registerReusableViews() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: UIConstant.CellIdentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell
+                            .description())
+        tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: ProductTableViewCell.description())
+        
+        tableView.estimatedRowHeight = 0
     }
     
     private func bindViewModel() {
@@ -101,7 +105,7 @@ final class ViewController: UIViewController {
                 let item = this.item(at: indexPath)
                 switch item {
                 case .item(let item):
-                    this.showProductDetail(sku: item.sku)
+                    this.showProductDetail(sku: item.sku, indexPath: indexPath)
                     break
                 }
             }
@@ -111,12 +115,16 @@ final class ViewController: UIViewController {
     
     private func rxDataSource() -> RxTableViewSectionedReloadDataSource<ItemSection> {
         let dataSource = RxTableViewSectionedReloadDataSource<ItemSection> { _, tableView, indexPath, item -> UITableViewCell in
-            let cell = tableView.dequeueReusableCell(withIdentifier: UIConstant.CellIdentifier, for: indexPath)
+            var cell: ProductTableViewCell?
+            cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.description(), for: indexPath) as? ProductTableViewCell
+            guard let productCell = cell else {
+                return UITableViewCell()
+            }
             switch item {
             case .item(let item):
-                cell.textLabel?.text = String(item.price)
+                productCell.populate(item: item)
             }
-            return cell
+            return productCell
         }
         return dataSource
     }
@@ -150,21 +158,34 @@ final class ViewController: UIViewController {
         return section(at: indexPath.section).items[indexPath.item]
     }
     
-    private func showProductDetail(sku: String?) {
+    private func showProductDetail(sku: String?, indexPath: IndexPath) {
         guard let sku = sku else {
             self.showAlert(message: noSku)
             return
         }
-        let detailViewModel = DetailViewModel(apiService: apiService, sku: sku)
+        let detailViewModel = DetailViewModel(apiService: apiService,
+                                              sku: sku,
+                                              indexPath: indexPath)
+        handleEvent(detailViewModel)
         let detailViewController = DetailViewController()
         detailViewController.viewModel = detailViewModel
         navigationController?.pushViewController(detailViewController, animated: true)
+    }
+    
+    private func handleEvent(_ detailViewModel: DetailViewModel) {
+        detailViewModel.bookmarkObservable
+            .subscribe { [weak self] toMark, indexPath in
+                // No need to refresh all data source and refresh table view
+                // Just update current cell.
+                let cell = self?.tableView.cellForRow(at: indexPath) as? ProductTableViewCell
+                cell?.updataBookmark(toMark: toMark)
+        }.disposed(by: detailViewModel.bag)
     }
 }
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return cellHeight
+        return 70
     }
 }
 

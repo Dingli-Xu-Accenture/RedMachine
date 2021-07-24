@@ -14,21 +14,24 @@ class DetailViewModel {
     // MARK: - Fields
     private var apiService: APIServicing
     let sku: String
-    private let bag = DisposeBag()
-    private var _productSubject = PublishSubject<Product>()
-    var productObservable: Observable<Product> {
-        return _productSubject.asObservable()
-    }
+    let indexPath: IndexPath
     
-    private var _bookmarkEvent = PublishSubject<Bool>()
-    var bookmarkObserver: AnyObserver<Bool> {
-        return _bookmarkEvent.asObserver()
-    }
+    let bag = DisposeBag()
+    private var _productSubject = PublishSubject<Product>()
+    var productObservable: Observable<Product> { _productSubject.asObservable() }
+    
+    private var _bookmarkEvent = PublishSubject<(Bool, IndexPath)>()
+    var bookmarkObserver: AnyObserver<(Bool, IndexPath)> { _bookmarkEvent.asObserver() }
+    var bookmarkObservable: Observable<(Bool, IndexPath)> { _bookmarkEvent.asObservable() }
+    var setProductMarkStatusObservable: Observable<(Bool, IndexPath)> = Observable.empty()
 
     // MARK: - Initialize
-    init(apiService: APIServicing, sku: String) {
+    init(apiService: APIServicing,
+         sku: String,
+         indexPath: IndexPath) {
         self.apiService = apiService
         self.sku = sku
+        self.indexPath = indexPath
         fetchProduct(sku)
         handleEvent()
     }
@@ -47,7 +50,7 @@ class DetailViewModel {
     }
     
     private func handleEvent() {
-        _bookmarkEvent.asObservable()
+        bookmarkObservable
             .subscribe { isMarked in
                 
             }

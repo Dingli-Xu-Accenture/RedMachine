@@ -16,6 +16,7 @@ struct Item: Codable {
     var name: String?
     var id: Int
     var price: Int
+    var isMarked: Bool = false
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -23,6 +24,10 @@ struct Item: Codable {
         name = try? container.decodeIfPresent(String.self, forKey: .name)
         id = try container.decode(Int.self, forKey: .id)
         price = try container.decode(Int.self, forKey: .price)
+    }
+    
+    mutating func setBookMark(toMark: Bool) {
+        self.isMarked = toMark
     }
 }
 
