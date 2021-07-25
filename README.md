@@ -9,6 +9,7 @@
 
 ## Running RedMachine
 - Make sure you have access to the `RedMachine` repo.
+- Make sure you switch `main` branch.
 - Make sure you have installed gem and pod.
 
 ```sh
@@ -205,6 +206,7 @@ In `ViewController.swift`:
 ```
 
 ## Time Spend:
+- Create repo and workspace: 1h.
 - Create Models: 2h (too much key-value without using library🤣).
 - UI Layout: 3h
 - Implement Network request and test APIs, display to view controller: 3h
@@ -213,7 +215,7 @@ In `ViewController.swift`:
 - Extensions and code optimization: 1h
 - Write README: 2h
 
-Totally: 15h, time including test and resolve defect.
+Totally: 16h, time including test and resolve defect.
 
 ## To Do List
 - Dependency Injection.
