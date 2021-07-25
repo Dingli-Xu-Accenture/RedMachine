@@ -33,7 +33,9 @@ class ViewModel {
     private var _sortEvent = PublishSubject<Void>()
     var sortEvent: AnyObserver<Void> { _sortEvent.asObserver() }
     
-    
+    private var _alertMessage = PublishSubject<String>()
+    var alertMessage: Observable<String> { _alertMessage.asObservable() }
+
     // MARK: - Initialize
     init(apiService: APIServicing) {
         self.apiService = apiService
@@ -63,7 +65,13 @@ class ViewModel {
                     guard let this = self else { return }
                     this.items = response?.items ?? []
                     print("Get products succeeds.")},
-                onError: { error in
+                onError: { [weak self] error in
+                    guard let this = self else { return }
+                    var message = error.localizedDescription
+                    if let networkError = error as? NetworkError, networkError.code == 401 {
+                        message = "Please log in and try again"
+                    }
+                    this._alertMessage.onNext(message)
                     print("Get products catches error \(error.localizedDescription).")})
             .disposed(by: bag)
     }
@@ -78,4 +86,22 @@ class ViewModel {
     func updateItems(index: Int, toMark: Bool) {
         items[index].setBookMark(toMark: toMark)
     }
+    
+    func login()  {
+        let userName = "appDevTest"
+        let password = "tti2020"
+        
+        apiService.login(userName: userName, password: password).subscribe { [weak self] token in
+            guard let this = self else { return }
+            this.userDefault.setValue(token, forKey: NetworkConstant.TokenKey)
+            this._alertMessage.onNext("Login successfully!")
+        } onError: { [weak self] error in
+            guard let this = self else { return }
+            this._alertMessage.onNext(error.localizedDescription)
+        }.disposed(by: bag)
+
+
+    }
 }
+
+

@@ -16,4 +16,12 @@ protocol APIServicing {
     /// - Parameters:
     /// - sku: product's stock keeping unit
     func fetchProduct(sku: String) -> Single<Product?>
+    
+    
+    /// Login to get token
+    ///
+    /// - Parameters:
+    /// - userName: user name
+    /// - password: user password
+    func login(userName: String, password: String) -> Single<String?>
 }

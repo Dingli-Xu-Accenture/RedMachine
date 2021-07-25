@@ -20,6 +20,8 @@ class DetailViewModel {
     private var product: Product?
     
     let bag = DisposeBag()
+    
+    // MARK: - Events
     private var _productSubject = PublishSubject<Product>()
     var productObservable: Observable<Product> { _productSubject.asObservable() }
     
@@ -29,6 +31,9 @@ class DetailViewModel {
     
     var _productMarkStatusSubject = PublishSubject<Bool>()
     var productMarkStatusObservable: Observable<Bool> { _productMarkStatusSubject.asObservable() }
+    
+    private var _alertMessage = PublishSubject<String>()
+    var alertMessage: Observable<String> { _alertMessage.asObservable() }
 
     // MARK: - Initialize
     init(apiService: APIServicing,
@@ -51,14 +56,20 @@ class DetailViewModel {
                     this._productSubject.onNext(product)
                     this.readLocalProduct(product: product)
                     print("Get product succeeds.")},
-                onError: { error in
+                onError: { [weak self] error in
+                    guard let this = self else { return }
+                    var message = error.localizedDescription
+                    if let networkError = error as? NetworkError, networkError.code == 401 {
+                        message = "Please log in and try again"
+                    }
+                    this._alertMessage.onNext(message)
                     print("Get product catches error \(error.localizedDescription).")})
             .disposed(by: bag)
     }
     
     private func handleEvent() {
         bookmarkObservable
-            // Handle data base should be async.
+            // Write data should be executed async in Sub-thread.
             .observeOn(SerialDispatchQueueScheduler(internalSerialQueueName: "bookmark"))
             .subscribe { [weak self] (isMarked, _) in
                 let realm = try! Realm()

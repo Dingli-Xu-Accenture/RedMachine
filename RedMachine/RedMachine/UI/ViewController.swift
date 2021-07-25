@@ -11,6 +11,7 @@ import RxCocoa
 import RxDataSources
 import Moya
 import RealmSwift
+import MJRefresh
 
 final class ViewController: UIViewController {
     
@@ -18,18 +19,20 @@ final class ViewController: UIViewController {
     private var tableView: UITableView = UITableView()
     private var sortButton: UIButton = UIButton(type: .custom)
     private var reloadButton: UIButton = UIButton(type: .custom)
+    private var loginButton: UIButton = UIButton(type: .custom)
     private var buttonView: UIView = UIView()
     
     // MARK: - Fields
     private let bag = DisposeBag()
     private let apiService = APIService()
+    private var pageSize = NetworkConstant.PageSize
     
     // MARK: - Dependency
     lazy var viewModel: ViewModel = ViewModel(apiService: apiService)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        UserDefaults.standard.removeObject(forKey: NetworkConstant.TokenKey)
         setupUI()
         registerReusableViews()
         bindViewModel()
@@ -60,42 +63,63 @@ final class ViewController: UIViewController {
     private func setupButtonViews() {
         // Terry TODO: Create ButtonView.swift if got spare time
         buttonView.backgroundColor = .gray
+        buttonView.accessibilityIdentifier = "buttonView"
         
-        buttonView.addSubViews([reloadButton, sortButton], intoContraints: false)
+        buttonView.addSubViews([reloadButton, loginButton, sortButton], intoContraints: false)
         
         reloadButton.leadingAnchor.constraint(equalTo: buttonView.leadingAnchor, constant: buttonIndent).isActive = true
         reloadButton.widthAnchor.constraint(equalToConstant: buttonWidth).isActive = true
         reloadButton.centerYAnchor.constraint(equalTo: buttonView.centerYAnchor).isActive = true
+        
+        loginButton.centerYAnchor.constraint(equalTo: buttonView.centerYAnchor).isActive = true
+        loginButton.centerXAnchor.constraint(equalTo: buttonView.centerXAnchor).isActive = true
+        loginButton.widthAnchor.constraint(equalToConstant: buttonWidth).isActive = true
+
         
         sortButton.trailingAnchor.constraint(equalTo: buttonView.trailingAnchor, constant: -buttonIndent).isActive = true
         sortButton.widthAnchor.constraint(equalToConstant: buttonWidth).isActive = true
         sortButton.centerYAnchor.constraint(equalTo: buttonView.centerYAnchor).isActive = true
         
         reloadButton.setTitle("Reload", for: .normal)
+        loginButton.setTitle("Login", for: .normal)
         sortButton.setTitle("Sort by price", for: .normal)
         
         // Setting isExclusiveTouch property to true causes the receiver to block the delivery of touch events to other views in the same window.
         reloadButton.isExclusiveTouch = true
+        loginButton.isExclusiveTouch = true
         sortButton.isExclusiveTouch = true
+        
+        reloadButton.accessibilityIdentifier = "reloadButton"
+        loginButton.accessibilityIdentifier = "loginButton"
+        sortButton.accessibilityIdentifier = "sortButton"
     }
     
     
     /// Setup TableView
-    private func setupTableView() {        
+    private func setupTableView() {
+        tableView.accessibilityIdentifier = "tableView"
         tableView.backgroundColor = .white
         tableView.rx.setDelegate(self).disposed(by: bag)
+        tableView.estimatedRowHeight = 0
+        let footer = MJRefreshAutoNormalFooter()
+        footer.setRefreshingTarget(self, refreshingAction: #selector(ViewController.loadMore))
+        tableView.mj_footer = footer
     }
     
     private func registerReusableViews() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell
                             .description())
         tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: ProductTableViewCell.description())
-        
-        tableView.estimatedRowHeight = 0
     }
     
     private func bindViewModel() {
         viewModel.sections.asObservable()
+            .do(afterNext: { [weak self] _ in
+                self?.tableView.mj_footer?.endRefreshing()
+            },
+            afterError: { [weak self] _ in
+                self?.tableView.mj_footer?.endRefreshing()
+            })
             .bind(to: tableView.rx.items(dataSource: rxDataSource()))
             .disposed(by: bag)
         
@@ -112,6 +136,10 @@ final class ViewController: UIViewController {
             }
             .disposed(by: bag)
 
+        viewModel.alertMessage.bind { [weak self] message in
+            self?.showAlert(message: message)
+        }
+        .disposed(by: bag)
     }
     
     private func rxDataSource() -> RxTableViewSectionedReloadDataSource<ItemSection> {
@@ -133,9 +161,6 @@ final class ViewController: UIViewController {
                 guard let itemModel = storedItem else { return productCell }
                 cell?.updataBookmark(toMark: itemModel.isMarked)
             }
-            
-
-
             return productCell
         }
         return dataSource
@@ -152,10 +177,20 @@ final class ViewController: UIViewController {
         sortButton.rx.tap
             .bind(to: viewModel.sortEvent)
             .disposed(by: bag)
+        
+        loginButton.rx.tap.subscribe { [weak self] _ in
+            self?.viewModel.login()
+        }.disposed(by: bag)
     }
     
     private func reloadData() {
-        viewModel.fetchProductLists(pageSize: NetworkConstant.pageSize)
+        pageSize = NetworkConstant.PageSize
+        viewModel.fetchProductLists(pageSize: pageSize)
+    }
+    
+    @objc private func loadMore() {
+        pageSize += NetworkConstant.PageSize
+        viewModel.fetchProductLists(pageSize: pageSize)
     }
     
     private func sortData() {

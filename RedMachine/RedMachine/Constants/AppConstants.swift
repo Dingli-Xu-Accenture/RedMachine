@@ -11,10 +11,8 @@ import Foundation
 
 struct NetworkConstant {
     static let BaseURL = URL(string: "https://stg.milwaukeetool.co.jp/rest/default/V1")!
-
-    // Terry TODO: Token may be expired, need to refresh token if
-    // unauthorized with current token.
-    static let Token = "4cynz1h2z3gdfvoaffxictebqlywhlk3"
     
-    static let pageSize = 10
+    static let PageSize = 10
+    
+    static let TokenKey = "NetworkConstant.TokenKey"
 }

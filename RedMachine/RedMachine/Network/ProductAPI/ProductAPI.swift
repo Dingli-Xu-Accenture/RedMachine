@@ -9,6 +9,7 @@ import Foundation
 import Moya
 
 enum ProductAPI {
+    case login(userName: String, password: String)
     case productList(pageSize: Int, direction: String, fieldName: String, fields: String)
     case product(sku: String)
 }
@@ -20,16 +21,24 @@ extension ProductAPI: TargetType {
     
     var path: String {
         switch self {
+        case .login:
+            return "/integration/admin/token"
         case .product(let sku):
             return "/products/\(sku)"
         case .productList:
-            let path = "/products"
-            return path
+            return "/products"
         }
     }
     
     var method: Moya.Method {
-        return .get
+        switch self {
+        case .login:
+            return .post
+        case .product:
+            return .get
+        case .productList:
+            return .get
+        }
     }
     
     var sampleData: Data {
@@ -38,6 +47,10 @@ extension ProductAPI: TargetType {
     
     var task: Task {
         switch self {
+        case .login(let userName, let password):
+            let parameters = ["username": userName, "password": password]
+            return .requestParameters(parameters: parameters,
+                                      encoding: JSONEncoding.default)
         case .product:
             return .requestPlain
         case .productList(let pageSize, let direction, let fieldName, let fields):
@@ -46,7 +59,8 @@ extension ProductAPI: TargetType {
             parameters["searchCriteria[sortOrders][0][direction]"] = direction
             parameters["searchCriteria[sortOrders][0][field]"] = fieldName
             parameters["fields"] = fields
-            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
+            return .requestParameters(parameters: parameters,
+                                      encoding: URLEncoding.default)
         }
     }
     

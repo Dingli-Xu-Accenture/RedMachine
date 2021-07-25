@@ -14,12 +14,18 @@ final class APIService {
     private let authPlugin: AccessTokenPlugin
     
     init() {
-        self.authPlugin = AccessTokenPlugin { _ in NetworkConstant.Token }
+        self.authPlugin = AccessTokenPlugin { _ in UserDefaults.standard.value(forKey: NetworkConstant.TokenKey) as? String ?? "" }
         self.apiProvider = MoyaProvider<ProductAPI>.init(plugins: [authPlugin])
     }
 }
 
 extension APIService: APIServicing {
+    func login(userName: String, password: String) -> Single<String?> {
+        return apiProvider.rx
+            .request(.login(userName: userName, password: password))
+            .parse(type: String.self)
+    }
+    
     func fetchProductsList(pageSize: Int, direction: String, fieldName: String, fields: String) -> Single<ProductList?> {
         return
             apiProvider.rx.request(.productList(pageSize: pageSize,

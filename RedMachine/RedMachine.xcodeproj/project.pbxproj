@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4FDBE01B4C62BABF202FD579 /* Pods_RedMachine_RedMachineTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C7FC0E3A3B75D73D716C493 /* Pods_RedMachine_RedMachineTests.framework */; };
 		5F59BB5526A7E03100785B8C /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F59BB5426A7E03100785B8C /* Product.swift */; };
 		5F59BB5D26A7F92900785B8C /* CustomAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F59BB5C26A7F92900785B8C /* CustomAttribute.swift */; };
 		5F59BB6826A7FD7E00785B8C /* ExtensionAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F59BB6726A7FD7E00785B8C /* ExtensionAttributes.swift */; };
@@ -57,7 +58,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C7FC0E3A3B75D73D716C493 /* Pods_RedMachine_RedMachineTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RedMachine_RedMachineTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F040DFA9BB19DDB601D965C /* Pods-RedMachine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedMachine.debug.xcconfig"; path = "Target Support Files/Pods-RedMachine/Pods-RedMachine.debug.xcconfig"; sourceTree = "<group>"; };
+		563B0BECDF6D6A564F69A549 /* Pods-RedMachine-RedMachineTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedMachine-RedMachineTests.debug.xcconfig"; path = "Target Support Files/Pods-RedMachine-RedMachineTests/Pods-RedMachine-RedMachineTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5F59BB5426A7E03100785B8C /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		5F59BB5C26A7F92900785B8C /* CustomAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAttribute.swift; sourceTree = "<group>"; };
 		5F59BB6726A7FD7E00785B8C /* ExtensionAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionAttributes.swift; sourceTree = "<group>"; };
@@ -81,6 +84,7 @@
 		5F59BCE326AAC1DE00785B8C /* UIView+AddSubViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AddSubViews.swift"; sourceTree = "<group>"; };
 		D17A9205BCC1407E06C9EC18 /* Pods-RedMachine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedMachine.release.xcconfig"; path = "Target Support Files/Pods-RedMachine/Pods-RedMachine.release.xcconfig"; sourceTree = "<group>"; };
 		D5BB160144A488C9A6BEA58A /* Pods_RedMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RedMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E63512B8EE2115FADEDFA6CE /* Pods-RedMachine-RedMachineTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedMachine-RedMachineTests.release.xcconfig"; path = "Target Support Files/Pods-RedMachine-RedMachineTests/Pods-RedMachine-RedMachineTests.release.xcconfig"; sourceTree = "<group>"; };
 		F5341B8526A5F82500ED3BDA /* RedMachine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedMachine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5341B8826A5F82500ED3BDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5341B8A26A5F82500ED3BDA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FDBE01B4C62BABF202FD579 /* Pods_RedMachine_RedMachineTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				D5BB160144A488C9A6BEA58A /* Pods_RedMachine.framework */,
+				2C7FC0E3A3B75D73D716C493 /* Pods_RedMachine_RedMachineTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -209,6 +215,8 @@
 			children = (
 				2F040DFA9BB19DDB601D965C /* Pods-RedMachine.debug.xcconfig */,
 				D17A9205BCC1407E06C9EC18 /* Pods-RedMachine.release.xcconfig */,
+				563B0BECDF6D6A564F69A549 /* Pods-RedMachine-RedMachineTests.debug.xcconfig */,
+				E63512B8EE2115FADEDFA6CE /* Pods-RedMachine-RedMachineTests.release.xcconfig */,
 			);
 			name = Pods;
 			path = ../Pods;
@@ -298,9 +306,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F5341BB226A5F82900ED3BDA /* Build configuration list for PBXNativeTarget "RedMachineTests" */;
 			buildPhases = (
+				9A913E0BE7311B11F51AF2A8 /* [CP] Check Pods Manifest.lock */,
 				F5341B9726A5F82800ED3BDA /* Sources */,
 				F5341B9826A5F82800ED3BDA /* Frameworks */,
 				F5341B9926A5F82800ED3BDA /* Resources */,
+				610BB50D710F1F9404331252 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -414,6 +424,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RedMachine/Pods-RedMachine-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		610BB50D710F1F9404331252 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RedMachine-RedMachineTests/Pods-RedMachine-RedMachineTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RedMachine-RedMachineTests/Pods-RedMachine-RedMachineTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RedMachine-RedMachineTests/Pods-RedMachine-RedMachineTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9A913E0BE7311B11F51AF2A8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RedMachine-RedMachineTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F3640BD6F8E40703EB20777F /* [CP] Check Pods Manifest.lock */ = {
@@ -674,6 +723,7 @@
 		};
 		F5341BB326A5F82900ED3BDA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 563B0BECDF6D6A564F69A549 /* Pods-RedMachine-RedMachineTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -696,6 +746,7 @@
 		};
 		F5341BB426A5F82900ED3BDA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E63512B8EE2115FADEDFA6CE /* Pods-RedMachine-RedMachineTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

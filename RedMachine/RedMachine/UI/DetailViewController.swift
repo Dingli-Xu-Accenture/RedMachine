@@ -51,6 +51,11 @@ final class DetailViewController: UIViewController {
         
         bookmarkButton.widthAnchor.constraint(equalToConstant: buttonWidth).isActive = true
         bookmarkButton.heightAnchor.constraint(equalToConstant: buttonHeight).isActive = true
+        
+        nameLabel.accessibilityIdentifier = "nameLabel"
+        priceLabel.accessibilityIdentifier = "priceLabel"
+        skuLabel.accessibilityIdentifier = "skuLabel"
+        bookmarkButton.accessibilityIdentifier = "bookmarkButton"
     }
     
     private func setupBookmark() {
@@ -67,6 +72,13 @@ final class DetailViewController: UIViewController {
         viewModel.productObservable.map { $0.sku }.bind(to: skuLabel.rx.text).disposed(by: bag)
         viewModel.productObservable.map { String($0.price) }.bind(to: priceLabel.rx.text).disposed(by: bag)
         viewModel.productMarkStatusObservable.bind(to: bookmarkButton.rx.isSelected).disposed(by: bag)
+        
+        viewModel
+            .alertMessage
+            .bind { [weak self] message in
+                self?.showAlert(message: message)
+            }
+            .disposed(by: bag)
         
         bookmarkButton.rx.tap
             .asDriver()
