@@ -55,10 +55,10 @@ final class DetailViewController: UIViewController {
     
     private func setupBookmark() {
         /// If button shows Bookmark, user click button and will bookmark this product.
-        /// If button shows Unookmark, user click button and will unbookmark this product.
+        /// If button shows Unbookmark, user click button and will unbookmark this product.
         
         bookmarkButton.setTitle("Bookmark", for: .normal)
-        bookmarkButton.setTitle("Unookmark", for: .selected)
+        bookmarkButton.setTitle("Unbookmark", for: .selected)
         bookmarkButton.backgroundColor = .gray
     }
     
@@ -66,6 +66,7 @@ final class DetailViewController: UIViewController {
         viewModel.productObservable.map { $0.name }.bind(to: nameLabel.rx.text).disposed(by: bag)
         viewModel.productObservable.map { $0.sku }.bind(to: skuLabel.rx.text).disposed(by: bag)
         viewModel.productObservable.map { String($0.price) }.bind(to: priceLabel.rx.text).disposed(by: bag)
+        viewModel.productMarkStatusObservable.bind(to: bookmarkButton.rx.isSelected).disposed(by: bag)
         
         bookmarkButton.rx.tap
             .asDriver()
@@ -80,6 +81,6 @@ final class DetailViewController: UIViewController {
 fileprivate extension DetailViewController {
     var verticalMargin: CGFloat { 20 }
     var horizonMargin: CGFloat { 20 }
-    var buttonWidth: CGFloat { 100 }
+    var buttonWidth: CGFloat { 150 }
     var buttonHeight: CGFloat { 40 }
 }

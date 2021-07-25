@@ -14,5 +14,7 @@ struct NetworkConstant {
 
     // Terry TODO: Token may be expired, need to refresh token if
     // unauthorized with current token.
-    static let Token = "y3fq5d5mnqgi55bpvnlxfces8aduxi5w"
+    static let Token = "4cynz1h2z3gdfvoaffxictebqlywhlk3"
+    
+    static let pageSize = 10
 }

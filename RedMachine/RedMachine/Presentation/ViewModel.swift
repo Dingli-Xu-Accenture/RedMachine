@@ -15,6 +15,7 @@ class ViewModel {
     // MARK: - Fields
     private var apiService: APIServicing
     private let bag = DisposeBag()
+    private let userDefault = UserDefaults.standard
     
     private var items = [Item]() {
         didSet {
@@ -51,9 +52,9 @@ class ViewModel {
             .disposed(by: bag)
     }
     
-    func fetchProductLists() {
+    func fetchProductLists(pageSize: Int = 10) {
         apiService
-            .fetchProductsList(pageSize: 10,
+            .fetchProductsList(pageSize: pageSize,
                                direction: "ASC",
                                fieldName: "code",
                                fields: "items[sku,name,id,price]")

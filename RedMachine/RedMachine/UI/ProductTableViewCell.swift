@@ -68,7 +68,7 @@ class ProductTableViewCell: UITableViewCell {
         bookmark.widthAnchor.constraint(lessThanOrEqualToConstant: iconWidth).isActive = true
         
         nameLabel.heightAnchor.constraint(equalToConstant: labelHeight).isActive = true
-        skuLabel.heightAnchor.constraint(equalToConstant: labelHeight).isActive = true
+        skuLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: labelHeight).isActive = true
         priceLabel.heightAnchor.constraint(equalToConstant: labelHeight).isActive = true
         bookmark.heightAnchor.constraint(equalToConstant: iconHeight).isActive = true
     }

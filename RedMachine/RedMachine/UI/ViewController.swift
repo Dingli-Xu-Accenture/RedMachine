@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import Moya
+import RealmSwift
 
 final class ViewController: UIViewController {
     
@@ -123,7 +124,18 @@ final class ViewController: UIViewController {
             switch item {
             case .item(let item):
                 productCell.populate(item: item)
+                
+                // Attention: Realm doesn't support cross-thread,
+                // because there's thread protection in Realm.
+                let realm = try! Realm()
+                
+                let storedItem = realm.object(ofType: ItemModel.self, forPrimaryKey: item.id)
+                guard let itemModel = storedItem else { return productCell }
+                cell?.updataBookmark(toMark: itemModel.isMarked)
             }
+            
+
+
             return productCell
         }
         return dataSource
@@ -143,7 +155,7 @@ final class ViewController: UIViewController {
     }
     
     private func reloadData() {
-        viewModel.fetchProductLists()
+        viewModel.fetchProductLists(pageSize: NetworkConstant.pageSize)
     }
     
     private func sortData() {
@@ -185,7 +197,15 @@ final class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        // Calculate cell's height
+        let cell = ProductTableViewCell(style: .default, reuseIdentifier: ProductTableViewCell.description())
+        let item: ItemType = self.item(at: indexPath)
+        switch item {
+        case .item(let item):
+            cell.populate(item: item)
+        }
+        let computedSize = cell.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+        return computedSize.height
     }
 }
 
@@ -194,7 +214,7 @@ extension ViewController: UITableViewDelegate {
 fileprivate extension ViewController {
     // UI Layout Constant
     var buttonViewHeight: CGFloat { 60 }
-    var cellHeight: CGFloat { 80 }
+    var cellHeight: CGFloat { 70 }
     var buttonWidth: CGFloat { 120 }
     var buttonIndent: CGFloat { 30 }
     

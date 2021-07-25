@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 struct ProductList: Codable {
     var items = [Item]()
@@ -34,5 +35,30 @@ struct Item: Codable {
 extension Item: Comparable {
     static func < (lhs: Item, rhs: Item) -> Bool {
         return lhs.price < rhs.price
+    }
+}
+ 
+class ItemModel: Object {
+    @objc dynamic var sku: String? = nil
+    @objc dynamic var id = 0
+    @objc dynamic var name: String? = nil
+    @objc dynamic var price = 0
+    @objc dynamic var isMarked: Bool = false
+
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    // Config ignored properties.
+    // As things stand, no need to store price.
+    override static func ignoredProperties() -> [String] {
+        return ["price"]
+    }
+    
+    func updateItemModel(product: Product, toMark: Bool) {
+        self.sku = product.sku
+        self.id = product.id
+        self.name = product.name
+        self.price = product.price
+        self.isMarked = !toMark
     }
 }
