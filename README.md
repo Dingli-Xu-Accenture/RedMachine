@@ -2,7 +2,7 @@
 - [Running RedMachine](#running-redMachine)
 
 
-## Running Madrid
+## Running RedMachine
 
 Make sure you have access to the `RedMachine` repo.
 Make sure you have installed gem and pod.
