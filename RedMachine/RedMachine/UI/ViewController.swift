@@ -142,6 +142,23 @@ final class ViewController: UIViewController {
         .disposed(by: bag)
     }
     
+    private func handleEvent() {
+        reloadButton.rx.tap
+            .asDriver()
+            .drive { [weak self] _ in
+                guard let this = self else { return }
+                this.reloadData()
+            }.disposed(by: bag)
+        
+        sortButton.rx.tap
+            .bind(to: viewModel.sortEvent)
+            .disposed(by: bag)
+        
+        loginButton.rx.tap.subscribe { [weak self] _ in
+            self?.viewModel.login()
+        }.disposed(by: bag)
+    }
+    
     private func rxDataSource() -> RxTableViewSectionedReloadDataSource<ItemSection> {
         let dataSource = RxTableViewSectionedReloadDataSource<ItemSection> { _, tableView, indexPath, item -> UITableViewCell in
             var cell: ProductTableViewCell?
@@ -165,24 +182,7 @@ final class ViewController: UIViewController {
         }
         return dataSource
     }
-    
-    private func handleEvent() {
-        reloadButton.rx.tap
-            .asDriver()
-            .drive { [weak self] _ in
-                guard let this = self else { return }
-                this.reloadData()
-            }.disposed(by: bag)
-        
-        sortButton.rx.tap
-            .bind(to: viewModel.sortEvent)
-            .disposed(by: bag)
-        
-        loginButton.rx.tap.subscribe { [weak self] _ in
-            self?.viewModel.login()
-        }.disposed(by: bag)
-    }
-    
+
     private func reloadData() {
         pageSize = NetworkConstant.PageSize
         viewModel.fetchProductLists(pageSize: pageSize)
@@ -191,10 +191,6 @@ final class ViewController: UIViewController {
     @objc private func loadMore() {
         pageSize += NetworkConstant.PageSize
         viewModel.fetchProductLists(pageSize: pageSize)
-    }
-    
-    private func sortData() {
-        
     }
     
     private func section(at index: Int) -> ItemSection {
