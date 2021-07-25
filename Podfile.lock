@@ -1,0 +1,69 @@
+PODS:
+  - Alamofire (5.4.3)
+  - Differentiator (4.0.1)
+  - MJRefresh (3.7.2)
+  - Moya/Core (14.0.0):
+    - Alamofire (~> 5.0)
+  - Moya/RxSwift (14.0.0):
+    - Moya/Core
+    - RxSwift (~> 5.0)
+  - Nimble (9.2.0)
+  - Quick (4.0.0)
+  - Realm (10.8.1):
+    - Realm/Headers (= 10.8.1)
+  - Realm/Headers (10.8.1)
+  - RealmSwift (10.8.1):
+    - Realm (= 10.8.1)
+  - RxCocoa (5.1.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxDataSources (4.0.1):
+    - Differentiator (~> 4.0)
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - RxRelay (5.1.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.1)
+
+DEPENDENCIES:
+  - MJRefresh
+  - Moya/RxSwift
+  - Nimble
+  - Quick
+  - RealmSwift
+  - RxCocoa (= 5.1.1)
+  - RxDataSources
+  - RxSwift (= 5.1.1)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Differentiator
+    - MJRefresh
+    - Moya
+    - Nimble
+    - Quick
+    - Realm
+    - RealmSwift
+    - RxCocoa
+    - RxDataSources
+    - RxRelay
+    - RxSwift
+
+SPEC CHECKSUMS:
+  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
+  MJRefresh: 30997d30b347c8e9508a4db11e3a690da0c9b85a
+  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
+  Nimble: 4f4a345c80b503b3ea13606a4f98405974ee4d0b
+  Quick: 6473349e43b9271a8d43839d9ba1c442ed1b7ac4
+  Realm: a2db54d9dcceddeba936b429f5b3d6610a109686
+  RealmSwift: 2a3c75ecbf5a3b04080ff5f6f0554cf6337b4764
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
+  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+
+PODFILE CHECKSUM: 810c8ed1ae6655e6d9bd246bf4b6663b75774666
+
+COCOAPODS: 1.10.1
