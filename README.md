@@ -2,6 +2,7 @@
 - [Running RedMachine](#running-redmachine)
 - [MVVM Architecture](#mvvm-architecture)
 - [Comments and Explainations](#comments-and-explainations)
+- [ViewModel Test](#viewmodel-test)
 - [Time Spend](#time-spend)
 - [To Do List](#to-do-list)
 
@@ -205,6 +206,52 @@ In `ViewController.swift`:
    }.disposed(by: detailViewModel.bag)
 ```
 
+## ViewModel Test:
+Now ViewModel got unit test based on `Nimble`, `Quick` & `RxTest`.
+Before init spec should mock dependencies and fields first, eg. `MockAPIService` is to mock `APIServicing` as a dependency of `ViewModel`.
+In `ViewModelSpec`:
+``` swift
+override func spec() {
+        describe("ViewModelSpec") {
+            var sut: ViewModel!
+            var bag: DisposeBag!
+            var mockAPIService: APIServicing!
+            
+            var testScheduler: TestScheduler!
+            var alertMessageObserver: TestableObserver<String>!
+            
+            let mockToken =  "token"
+            let mockSku = "sku"
+            
+            beforeEach {
+                bag = DisposeBag()
+                // mock 1 element product list
+                let mockItems = [
+                    Item(sku: mockSku, name: "abc", id: 10, price: 100, isMarked: false),
+                    Item(sku: "sku-2", name: "cde", id: 20, price: 50, isMarked: false),
+                ]
+                let mockProductLists: ProductList = ProductList(items: mockItems)
+                testScheduler = TestScheduler(initialClock: 0, simulateProcessingDelay: false)
+                mockAPIService = MockAPIService(token: mockToken, prodctLists: mockProductLists, product: Product(sku: mockSku, id: 10, price: 100))
+                sut = ViewModel(apiService: mockAPIService)
+            }
+      ...      
+}
+```
+
+
+Trigger view model function in `beforeEach` and vailidate the result in `it` with description.
+```swift
+                beforeEach {
+                    sut.fetchProductLists()
+                }
+                
+                it("data source is 1 section with 2 rows") {
+                    expect(sut.dataSource.count).to(equal(1))
+                    expect(sut.dataSource.first?.items.count).to(equal(2))
+                }
+```
+
 ## Time Spend:
 - Create repo and workspace: 1h.
 - Create Models: 2h (too much key-value without using library🤣).
@@ -213,13 +260,14 @@ In `ViewController.swift`:
 - Local storage: 2h
 - Bind VM and VC/V: 2h
 - Extensions and code optimization: 1h
+- Unit Test(only ViewModelSpec): 1h
 - Write README: 2h
 
-Totally: 16h, time including test and resolve defect.
+Totally: 17h, time including test and resolve defect.
 
 ## To Do List
 - Dependency Injection.
-- Add ViewModel and UI Tests.
+- Add lack Tests.
 - Defer load for configuration or initialization of libriaries in `AppDelegate`.
 - Import `SwiftyJSON` or `HandyJSON` for models.
 
