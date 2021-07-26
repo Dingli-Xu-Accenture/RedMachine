@@ -13,6 +13,7 @@ pod 'MJRefresh'
 def testing_pods
     pod 'Quick'
     pod 'Nimble'
+    pod 'RxTest'
 end
  
 target 'RedMachineTests' do

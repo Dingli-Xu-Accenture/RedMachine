@@ -38,6 +38,8 @@
 		F5341BA026A5F82800ED3BDA /* RedMachineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5341B9F26A5F82800ED3BDA /* RedMachineTests.swift */; };
 		F5341BAB26A5F82800ED3BDA /* RedMachineUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5341BAA26A5F82800ED3BDA /* RedMachineUITests.swift */; };
 		F5E49E7F26AC6DBC005A73FB /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E49E7E26AC6DBC005A73FB /* ProductTableViewCell.swift */; };
+		F5E49F9326AE6946005A73FB /* ViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E49F9226AE6946005A73FB /* ViewModelSpec.swift */; };
+		F5E49FCD26AE8467005A73FB /* MockAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E49FCC26AE8467005A73FB /* MockAPIService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +101,8 @@
 		F5341BAA26A5F82800ED3BDA /* RedMachineUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedMachineUITests.swift; sourceTree = "<group>"; };
 		F5341BAC26A5F82900ED3BDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F5E49E7E26AC6DBC005A73FB /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
+		F5E49F9226AE6946005A73FB /* ViewModelSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelSpec.swift; sourceTree = "<group>"; };
+		F5E49FCC26AE8467005A73FB /* MockAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,6 +255,7 @@
 				5F59BBC226A91CFD00785B8C /* Network */,
 				5F59BBB326A91BA100785B8C /* Constants */,
 				5F59BB5B26A7E06A00785B8C /* UI */,
+				F5E49FD126AE84DC005A73FB /* Mocks */,
 				5F59BB5A26A7E04400785B8C /* Models */,
 				5F59BB5926A7E03400785B8C /* Presentation */,
 				F5341B8826A5F82500ED3BDA /* AppDelegate.swift */,
@@ -267,6 +272,7 @@
 			children = (
 				F5341B9F26A5F82800ED3BDA /* RedMachineTests.swift */,
 				F5341BA126A5F82800ED3BDA /* Info.plist */,
+				F5E49F9226AE6946005A73FB /* ViewModelSpec.swift */,
 			);
 			path = RedMachineTests;
 			sourceTree = "<group>";
@@ -278,6 +284,14 @@
 				F5341BAC26A5F82900ED3BDA /* Info.plist */,
 			);
 			path = RedMachineUITests;
+			sourceTree = "<group>";
+		};
+		F5E49FD126AE84DC005A73FB /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				F5E49FCC26AE8467005A73FB /* MockAPIService.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -506,6 +520,7 @@
 				5F59BCDA26AAAB9900785B8C /* DetailViewModel.swift in Sources */,
 				5F59BBAF26A9154A00785B8C /* ViewModel.swift in Sources */,
 				5F59BB5D26A7F92900785B8C /* CustomAttribute.swift in Sources */,
+				F5E49FCD26AE8467005A73FB /* MockAPIService.swift in Sources */,
 				F5E49E7F26AC6DBC005A73FB /* ProductTableViewCell.swift in Sources */,
 				5F59BCDF26AAC03B00785B8C /* UIViewController+Alert.swift in Sources */,
 				5F59BBDF26A91E8F00785B8C /* ProductList.swift in Sources */,
@@ -527,6 +542,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5341BA026A5F82800ED3BDA /* RedMachineTests.swift in Sources */,
+				F5E49F9326AE6946005A73FB /* ViewModelSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

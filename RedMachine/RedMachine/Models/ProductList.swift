@@ -13,11 +13,19 @@ struct ProductList: Codable {
 }
 
 struct Item: Codable {
-    var sku: String?
-    var name: String?
-    var id: Int
-    var price: Int
+    var sku: String? = nil
+    var name: String? = nil
+    var id: Int = 0
+    var price: Int = 1000
     var isMarked: Bool = false
+    
+    init(sku: String?, name: String?, id: Int = 0, price: Int, isMarked: Bool = false) {
+        self.sku = sku
+        self.name = name
+        self.id = id
+        self.price = price
+        self.isMarked = isMarked
+    }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

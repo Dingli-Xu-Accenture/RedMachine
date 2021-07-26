@@ -24,6 +24,8 @@ PODS:
   - RxRelay (5.1.1):
     - RxSwift (~> 5)
   - RxSwift (5.1.1)
+  - RxTest (5.1.2):
+    - RxSwift (~> 5)
 
 DEPENDENCIES:
   - MJRefresh
@@ -34,6 +36,7 @@ DEPENDENCIES:
   - RxCocoa (= 5.1.1)
   - RxDataSources
   - RxSwift (= 5.1.1)
+  - RxTest
 
 SPEC REPOS:
   trunk:
@@ -49,6 +52,7 @@ SPEC REPOS:
     - RxDataSources
     - RxRelay
     - RxSwift
+    - RxTest
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
@@ -63,7 +67,8 @@ SPEC CHECKSUMS:
   RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  RxTest: 274549b747dca56f47c52c8991ec5cf797ecfe40
 
-PODFILE CHECKSUM: 810c8ed1ae6655e6d9bd246bf4b6663b75774666
+PODFILE CHECKSUM: b461aed9f5f77763354fcac862cd4f7d90aab287
 
 COCOAPODS: 1.10.1

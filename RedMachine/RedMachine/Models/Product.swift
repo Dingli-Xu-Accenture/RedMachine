@@ -2,22 +2,28 @@ import Foundation
 
 struct Product: Codable {
 	var attributeSetId: Int = 0
-	var createdAt: String?
+	var createdAt: String? = nil
 	var customAttributes = [CustomAttribute]()
-	var extensionAttributes: ExtensionAttributes?
+	var extensionAttributes: ExtensionAttributes? = nil
 	var id: Int = 0
 	var mediaGalleryEntries = [MediaGalleryEntry]()
 	var name: String?
 	var options = [Option]()
 	var price: Int = 0
 	var productLinks = [ProductLink]()
-	var sku: String?
+	var sku: String? = nil
 	var status: Int = 0
 	var tierPrices = [TierPrice]()
 	var typeId: String?
 	var updatedAt: String?
 	var visibility: Int = 0
 	var weight: Int = 0
+    
+    init(sku: String?, id: Int = 0, price: Int = 0) {
+        self.sku = sku
+        self.id = id
+        self.price = price
+    }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
