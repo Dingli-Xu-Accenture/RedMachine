@@ -220,6 +220,7 @@ Totally: 16h, time including test and resolve defect.
 ## To Do List
 - Dependency Injection.
 - Add ViewModel and UI Tests.
+- Defer load for configuration or initialization of libriaries in `AppDelegate`.
 - Import `SwiftyJSON` or `HandyJSON` for models.
 
 
